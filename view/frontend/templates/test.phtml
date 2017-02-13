@@ -1,1 +1,43 @@
-Hello!
+<div>
+    <a href="#" id="click-me">Click Me</a>
+</div>
+
+<div id="popup-mpdal" style="display:none;">
+    <input type="text" style="text-align: center" value="0938746574" />
+</div>
+
+<script>
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal',
+            'Ivey_Callmeback/PhoneFormatter'
+        ],
+        function(
+            $,
+            modal
+        ) {
+            $('input').mask("(999) 999 999");
+
+            var options = {
+                type: 'popup',
+                responsive: false,
+                innerScroll: true,
+                title: 'Call me back! Request form.',
+                buttons: [{
+                    text: $.mage.__('Continue'),
+                    class: '',
+                    click: function () {
+                        this.closeModal();
+                    }
+                }]
+            };
+
+            var popup = modal(options, $('#popup-mpdal'));
+            $("#click-me").on('click',function(){
+                $("#popup-mpdal").modal("openModal");
+            });
+
+        }
+    );
+</script>

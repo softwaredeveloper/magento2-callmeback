@@ -1,0 +1,11 @@
+<page layout="empty">
+    <body>
+        <container name="test.test">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="Ivey_Callmeback::test.phtml"
+                   template="Ivey_Callmeback::test.phtml"
+                   after="-">
+            </block>
+        </container>
+    </body>
+</page>
