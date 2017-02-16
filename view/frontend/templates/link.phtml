@@ -1,0 +1,35 @@
+<div class="js-callmeback-link">
+    <a href="#">CLICK ME!</a>
+</div>
+<script>
+    require(
+        [
+            'jquery',
+            'mage/url',
+            'mage/loader'
+        ],
+        function($, url, loader) {
+            var block = $('.js-callmeback-link'),
+                link = block.find('a');
+
+            link.on('click', function(event) {
+                if (!block.data('popup-loaded')) {
+                    $.ajax({
+                        url: url.build('callme/request/form'),
+                        type: 'get',
+                        dataType: 'json',
+                        showLoader: true,
+                        context: $('body')
+                    }).done(function(data){
+                        block.append(data.content);
+                        block.trigger('contentUpdated');
+                        block.data('popup-loaded', 1);
+                        block.trigger('hide.loader');
+                    });
+                    return;
+                }
+                $('#callmeback-popup-modal').modal('openModal');
+            });
+        }
+    );
+</script>

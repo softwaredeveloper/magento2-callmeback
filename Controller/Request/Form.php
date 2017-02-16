@@ -16,8 +16,6 @@ class Form extends Action
      */
     protected $resultPageFactory;
 
-    protected $resultLayoutFactory;
-
     /**
      * Constructor
      *
@@ -26,25 +24,21 @@ class Form extends Action
      */
     public function __construct(
         Context $context,
-        PageFactory $resultPageFactory,
         JsonFactory $resultJsonPageFactory
     ) {
         $this->resultPageFactory = $resultJsonPageFactory;
-        $this->resultLayoutFactory = $resultPageFactory;
         parent::__construct($context);
     }
 
     public function execute()
     {
         /** @var Template $form */
-//        $form = $this->_view->getLayout()->createBlock(Template::class);
-//        $form->setTemplate('Ivey_Callmeback::test.phtml');
-//
-//        return $this->resultPageFactory->create()
-//            ->setData([
-//                'content' => $form->toHtml()
-//            ]);
+        $form = $this->_view->getLayout()->createBlock(Template::class);
+        $form->setTemplate('Ivey_Callmeback::popup.phtml');
 
-        return $this->resultLayoutFactory->create();
+        return $this->resultPageFactory->create()
+            ->setData([
+                'content' => $form->toHtml()
+            ]);
     }
 }
