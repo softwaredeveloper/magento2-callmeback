@@ -5,7 +5,7 @@ namespace Ivey\Callmeback\Controller\Request;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
-use Magento\Framework\View\Element\Template;
+use Ivey\Callmeback\Block\Popup;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Backend\App\Action\Context;
 
@@ -32,9 +32,8 @@ class Form extends Action
 
     public function execute()
     {
-        /** @var Template $form */
-        $form = $this->_view->getLayout()->createBlock(Template::class);
-        $form->setTemplate('Ivey_Callmeback::popup.phtml');
+        /** @var Popup $form */
+        $form = $this->_view->getLayout()->createBlock(Popup::class);
 
         return $this->resultPageFactory->create()
             ->setData([
